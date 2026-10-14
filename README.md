@@ -15,6 +15,7 @@ An end-to-end machine learning system and interactive web dashboard developed fo
 
 ## 📌 Table of Contents
 - [Project Overview & Motivation](#-project-overview--motivation)
+- [Application Screenshots (UI & Dashboard)](#-application-screenshots-ui--dashboard)
 - [Interactive Web Application & Dashboard](#-interactive-web-application--dashboard)
 - [System Architecture & Workflow](#-system-architecture--workflow)
 - [Dataset & Feature Engineering](#-dataset--feature-engineering)
@@ -47,15 +48,31 @@ This project tackles food wastage through a multi-faceted machine learning pipel
 
 ---
 
-## 🖥️ Interactive Web Application & Dashboard
+## 📸 Application Screenshots (UI & Dashboard)
 
-Try the deployed application live in your browser:
+> 🌐 **Live Web Application**: **[https://dmcapstoneproject-2026.streamlit.app/](https://dmcapstoneproject-2026.streamlit.app/)**  
+> 💻 **Local Launch**: `streamlit run app.py`
 
-👉 **[Restaurant Food Wastage Prediction & Management System Live Demo](https://dmcapstoneproject-2026.streamlit.app/)**
+### 🖼️ Visual Screenshot Gallery (UI Showcase)
+
+| 🏠 **1. Home / Executive Dashboard** | 🎯 **2. Real-Time Prediction Engine** |
+|:---:|:---:|
+| [![Home Dashboard](screenshots/01_dashboard_home.png)](screenshots/01_dashboard_home.png) | [![Prediction Engine](screenshots/02_prediction_engine.png)](screenshots/02_prediction_engine.png) |
+| *End-to-end workflow overview & dataset stats* | *Interactive culinary parameters & live inference* |
+| 📊 **3. Waste Analysis & Clustering** | 📈 **4. Model Performance Scorecard** |
+| [![Waste Analysis](screenshots/03_waste_analysis.png)](screenshots/03_waste_analysis.png) | [![Model Performance](screenshots/04_model_performance.png)](screenshots/04_model_performance.png) |
+| *K-Means, Hierarchical & DBSCAN patterns* | *Holdout validation metrics & feature importances* |
+| 💡 **5. Prescriptive Recommendations** | ⚙️ **6. System Architecture & Specs** |
+| [![Recommendations](screenshots/05_recommendations.png)](screenshots/05_recommendations.png) | [![About Project](screenshots/06_about_project.png)](screenshots/06_about_project.png) |
+| *Stratified kitchen protocols (Low / Med / High)* | *Pipeline specifications & scikit-learn schema* |
+
+---
+
+## 🖥️ Interactive Web Application & Feature Walkthrough
 
 The application is built with Streamlit and Plotly, loading pre-trained pipelines (`models/regression_model.joblib` and `models/classification_model.joblib`) with zero cold-start re-training.
 
-### 📸 Dashboard & Frontend Previews
+### 🔍 Detailed Page Breakdowns
 
 #### 1. Home / System Dashboard
 An intuitive executive overview summarizing the AI-driven workflow from restaurant inputs to regression forecasts, risk categorization, and prescriptive advisories, along with dataset statistics (1,782 records across 10 operational parameters).
