@@ -1,0 +1,9 @@
+Model,Metric,Value
+Random Forest Regressor,MAE,1.6561395224756568
+Random Forest Regressor,MSE,7.663543114053382
+Random Forest Regressor,RMSE,2.768310516190946
+Random Forest Regressor,R2,0.9260688181071778
+Random Forest Classifier,Accuracy,0.8571428571428571
+Random Forest Classifier,Precision,0.8571212453700934
+Random Forest Classifier,Recall,0.8571428571428571
+Random Forest Classifier,F1 Score,0.8567274375776537

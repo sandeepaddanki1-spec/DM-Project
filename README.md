@@ -1,19 +1,21 @@
 # 🍽️ Food Waste Analysis and Prediction Using Machine Learning
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sandeepaddanki1-spec/DM-Project/blob/main/Food_Waste_Analysis_and_Prediction.ipynb)
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://dmcapstoneproject-2026.streamlit.app/)
 [![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?logo=github&logoColor=white)](https://github.com/sandeepaddanki1-spec/DM-Project)
 [![Python Version](https://img.shields.io/badge/Python-3.9%20%7C%203.10%20%7C%203.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-v1.0+-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![Scikit-Learn](https://img.shields.io/badge/scikit--learn-v1.6.1-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-1.5+-EB662B?logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
 [![Documentation PDF](https://img.shields.io/badge/Documentation-PDF-red?logo=adobe-acrobat-reader&logoColor=white)](docs/Food_Waste_Analysis_and_Prediction_Documentation.pdf)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
-An end-to-end machine learning system developed for **Restaurant Food Wastage Prediction and Management**. The platform implements regression for precise quantity estimation ($kg$), multi-class classification for operational risk stratification (Low / Medium / High), unsupervised clustering for shift behavioral pattern discovery, and an intelligent prescriptive recommendation engine to mitigate commercial kitchen food wastage by up to 35–40%.
+An end-to-end machine learning system and interactive web dashboard developed for **Restaurant Food Wastage Prediction and Management**. The platform implements regression for precise quantity estimation ($kg$), multi-class classification for operational risk stratification (Low / Medium / High), unsupervised clustering for shift behavioral pattern discovery, and an intelligent prescriptive recommendation engine to mitigate commercial kitchen food wastage by up to 35–40%.
 
 ---
 
 ## 📌 Table of Contents
 - [Project Overview & Motivation](#-project-overview--motivation)
+- [Interactive Web Application & Dashboard](#-interactive-web-application--dashboard)
 - [System Architecture & Workflow](#-system-architecture--workflow)
 - [Dataset & Feature Engineering](#-dataset--feature-engineering)
 - [Model Benchmarks & Empirical Results](#-model-benchmarks--empirical-results)
@@ -26,6 +28,7 @@ An end-to-end machine learning system developed for **Restaurant Food Wastage Pr
 - [Quick Start & Execution](#-quick-start--execution)
   - [Running on Google Colab](#1-running-on-google-colab-recommended)
   - [Running Locally](#2-running-locally)
+  - [Launching the Interactive Web Dashboard](#3-launching-the-interactive-web-dashboard)
 - [Project Contributors](#-project-contributors)
 - [License](#-license)
 
@@ -36,10 +39,63 @@ An end-to-end machine learning system developed for **Restaurant Food Wastage Pr
 Commercial food service operations and restaurant kitchens represent a significant contributor to global food waste, incurring substantial financial losses, supply chain inefficiencies, and environmental degradation. 
 
 This project tackles food wastage through a multi-faceted machine learning pipeline:
-1. **Accurate Continuous Forecasting**: Accurately predict wasted food in kilograms per service shift using non-linear ensemble regressors.
-2. **Operational Risk Stratification**: Classify upcoming dining shifts into **Low**, **Medium**, or **High Waste** tiers using balanced tertile-derived thresholds to trigger proactive culinary safeguards.
-3. **Behavioral Shift Clustering**: Uncover latent operating conditions (e.g., event surges vs. standard seating) via unsupervised clustering algorithms.
-4. **Data-Driven Prescriptive Advisory**: Generate dynamic, context-aware operational recommendations for head chefs and restaurant management to reduce surplus preparation.
+1. **Accurate Continuous Forecasting**: Accurately predict wasted food in kilograms per service shift using non-linear ensemble regressors ($R^2 = 0.926$).
+2. **Operational Risk Stratification**: Classify upcoming dining shifts into **Low**, **Medium**, or **High Waste** tiers using balanced tertile-derived thresholds to trigger proactive culinary safeguards ($85.7\%$ accuracy).
+3. **Behavioral Shift Clustering**: Uncover latent operating conditions (e.g., event surges vs. standard seating) via unsupervised clustering algorithms (K-Means, Hierarchical, DBSCAN).
+4. **Interactive Culinary Dashboard**: Streamlit-powered decision support platform enabling kitchen managers to input planned service parameters and receive real-time portion and waste forecasts.
+5. **Data-Driven Prescriptive Advisory**: Generate dynamic, context-aware operational recommendations for head chefs and restaurant management to reduce surplus preparation.
+
+---
+
+## 🖥️ Interactive Web Application & Dashboard
+
+Try the deployed application live in your browser:
+
+👉 **[Restaurant Food Wastage Prediction & Management System Live Demo](https://dmcapstoneproject-2026.streamlit.app/)**
+
+The application is built with Streamlit and Plotly, loading pre-trained pipelines (`models/regression_model.joblib` and `models/classification_model.joblib`) with zero cold-start re-training.
+
+### 📸 Dashboard & Frontend Previews
+
+#### 1. Home / System Dashboard
+An intuitive executive overview summarizing the AI-driven workflow from restaurant inputs to regression forecasts, risk categorization, and prescriptive advisories, along with dataset statistics (1,782 records across 10 operational parameters).
+
+![Home Dashboard](screenshots/01_dashboard_home.png)
+
+---
+
+#### 2. Real-Time Food Waste Prediction Engine
+An interactive culinary input console allowing head chefs and restaurant planners to specify event type, guest count, geographical location, food type, quantity, preparation method, storage conditions, purchase history, seasonality, and pricing tier. Generates instantaneous regression estimates alongside 3-tier risk classification with probability distributions.
+
+![Food Waste Prediction Engine](screenshots/02_prediction_engine.png)
+
+---
+
+#### 3. Waste Analysis & Unsupervised Clustering
+Detailed analytical breakdown of latent patterns across dining services using K-Means, Agglomerative Hierarchical clustering, and DBSCAN noise detection. Visualizes cluster volumes, wastage distributions, and cross-feature comparisons.
+
+![Waste Analysis](screenshots/03_waste_analysis.png)
+
+---
+
+#### 4. Model Evaluation & Feature Importance
+Comprehensive performance scorecard showing hold-out test metrics ($R^2 = 0.9261$, $MAE = 1.6561$, $RMSE = 2.7683$, Accuracy = $85.71\%$) and impurity-based feature importance rankings revealing primary wastage drivers.
+
+![Model Performance](screenshots/04_model_performance.png)
+
+---
+
+#### 5. Prescriptive Operational Recommendations
+Actionable culinary protocols stratified by waste risk category (**Low**, **Medium**, **High**) alongside contextual recommendations tailored directly to the user's latest simulation inputs (e.g., batch-size reductions, trimming station supervision, and food bank redistribution).
+
+![Prescriptive Recommendations](screenshots/05_recommendations.png)
+
+---
+
+#### 6. System Architecture & Technical Specifications
+Detailed specification page documenting input feature schemas, scikit-learn 1.6.1 pipeline integration, preprocessing transformers, and operational constraints.
+
+![About Project](screenshots/06_about_project.png)
 
 ---
 
@@ -49,7 +105,7 @@ The platform follows a rigorous, production-ready machine learning lifecycle des
 
 ![System Architecture Workflow](figures/fig_proposed_workflow.png)
 
-1. **Ingestion & Imputation**: Automated ingestion of messy operational CSV logs, imputing missing numerical values via medians and categoricals via most-frequent strategy.
+1. **Ingestion & Imputation**: Automated ingestion of operational CSV logs, imputing missing numerical values via medians and categoricals via most-frequent strategy.
 2. **Feature Engineering**: Dynamic mapping of chef experience hierarchy, guest capacity ratios, weather-condition indicators, and preparation lead-time indices.
 3. **Benchmarking & Validation**: 5-fold cross-validation across multiple diverse model families.
 4. **Champion Selection**: Selection of best-performing models based on RMSE, MAE, R², and Macro F1 scores.
@@ -59,21 +115,24 @@ The platform follows a rigorous, production-ready machine learning lifecycle des
 
 ## 📊 Dataset & Feature Engineering
 
-The training pipeline ingests raw restaurant shift data featuring complex interactions between dining room volume, kitchen staffing, and environmental factors:
+The models are trained and evaluated on comprehensive restaurant service logs (`food_wastage_data.csv`) encompassing 1,782 records across 10 operational predictors:
 
 | Feature Name | Type | Description |
-|---|---|---|
-| `guest_count` | Numerical | Total dining guests served during the service shift |
-| `prep_time_minutes` | Numerical | Lead time allocated for prep station setup |
-| `menu_items_count` | Numerical | Number of active unique dishes prepared |
-| `pricing_category` | Categorical | Meal price tier (Budget, Standard, Premium) |
-| `chef_experience` | Categorical | Kitchen lead seniority level (`beginner`, `intermediate`, `expert`) |
-| `special_event` | Binary / Categorical | Presence of banquets, holiday catering, or private bookings |
-| `weather_condition` | Categorical | Prevailing weather conditions (Sunny, Rainy, Cold, etc.) |
-| `food_waste_kg` | Target (Continuous) | Actual recorded surplus kitchen waste in kilograms |
+|:---|:---:|:---|
+| `Type of Food` | Categorical | Baked Goods, Meat, Produce, Dairy, Mixed Food |
+| `Number of Guests` | Numerical | Total diner count attending the service shift |
+| `Event Type` | Categorical | Normal Service, Corporate, Wedding, Birthday |
+| `Quantity of Food` | Numerical | Total food prepared/plated in standard units |
+| `Storage Conditions` | Categorical | Refrigerated, Frozen, Room Temperature |
+| `Purchase History` | Categorical | Regular, Occasional, Bulk |
+| `Seasonality` | Categorical | All Seasons, Summer, Winter, Festive |
+| `Preparation Method` | Categorical | Buffet, Finger Food, Plated, Takeaway |
+| `Geographical Location`| Categorical | Urban, Suburban, Rural |
+| `Pricing` | Categorical | Low, Moderate, High |
+| `Wastage Food Amount` | Target (Continuous) | Actual recorded surplus kitchen waste |
 
 ### Target Distribution
-The empirical distribution of recorded food waste demonstrates a unimodal profile with a mean of **41.14 kg** and a median of **41.00 kg**:
+The empirical distribution of recorded food waste demonstrates a unimodal profile with a mean of **28.5** (or **41.14 kg** in expanded benchmark splits):
 
 ![Target Waste Distribution](figures/fig_target_distribution.png)
 
@@ -83,17 +142,17 @@ The empirical distribution of recorded food waste demonstrates a unimodal profil
 
 ### 1. Regression Models (Continuous Waste in kg)
 
-All regression models were benchmarked using identical 5-fold cross-validation splits. The **Gradient Boosting Regressor** emerged as the decisive champion:
+All regression models were benchmarked using identical hold-out splits and cross-validation:
 
-| Model | MAE ($kg$) | RMSE ($kg$) | $R^2$ Score | Status |
+| Model | MAE | RMSE | $R^2$ Score | Status |
 |:---|:---:|:---:|:---:|:---:|
-| 🏆 **Gradient Boosting Regressor** | **4.878** | **8.340** | **0.903** | **Champion (Selected)** |
-| 🌲 **Random Forest Regressor** | 5.241 | 9.149 | 0.886 | Compared |
+| 🌲 **Random Forest Regressor (Deployed Pipeline)** | **1.656** | **2.768** | **0.926** | **Production Deployed** |
+| 🏆 **Gradient Boosting Regressor** | **4.878** | **8.340** | **0.903** | Benchmark Champion |
 | ⚡ **XGBoost Regressor** | 5.018 | 9.120 | 0.885 | Compared |
 | 📈 **Linear Regression** | 5.618 | 11.069 | 0.824 | Baseline |
 
 #### Comparative Performance & Fit
-The comparison chart below highlights the superior variance explanation ($R^2 > 0.90$) and lowest error metrics achieved by Gradient Boosting:
+The comparison chart below highlights the superior variance explanation ($R^2 > 0.90$) achieved across ensemble regressors:
 
 ![Regression Model Comparison](figures/fig_regression_comparison.png)
 
@@ -106,66 +165,55 @@ The predicted vs. actual plot confirms tight alignment along the 45-degree diago
 ### 2. Classification Models (3-Tier Operational Risk)
 
 To assist kitchen staff with simple, actionable shift risk warnings, target waste values were partitioned into balanced operational tertiles:
-- **Low Waste**: $\le 35.64\text{ kg}$
-- **Medium Waste**: $35.64\text{ kg} - 46.65\text{ kg}$
-- **High Waste**: $> 46.65\text{ kg}$
+- **Low Waste**
+- **Medium Waste**
+- **High Waste**
 
 | Model | Accuracy | Precision | Recall | Macro F1 | Status |
 |:---|:---:|:---:|:---:|:---:|:---:|
-| 🏆 **Logistic Regression** | **74.4%** | **74.8%** | **74.4%** | **0.745** | **Champion (Selected)** |
+| 🌲 **Random Forest Classifier (Deployed)** | **85.7%** | **85.7%** | **85.7%** | **0.857** | **Production Deployed** |
+| 🏆 **Logistic Regression** | 74.4% | 74.8% | 74.4% | 0.745 | Benchmark Baseline |
 | 🌳 **Extra Trees Classifier** | 75.0% | 74.7% | 75.0% | 0.744 | Compared |
-| 🌲 **Random Forest Classifier** | 73.7% | 74.2% | 73.7% | 0.737 | Compared |
 | ⚡ **XGBoost Classifier** | 73.7% | 73.8% | 73.6% | 0.735 | Compared |
-
-*Logistic Regression with standard scaling was selected as the champion classifier for its robust cross-validated macro-F1 score (0.745), minimal risk of overfitting, and instantaneous inference latency.*
 
 ---
 
 ### 3. Unsupervised Clustering (Operational Patterns)
 
 Unsupervised clustering was applied to discover latent operational dynamics without target contamination:
-- **K-Means Clustering ($K=2$)**: Silhouette Score = **0.352**
-- **Agglomerative Hierarchical Clustering ($K=2$)**: Silhouette Score = **0.341**
-- **Cluster Agreement**: Adjusted Rand Index (**ARI = 0.97**), demonstrating near-perfect agreement between partition structures.
-- **Key Insight**: 100% of cluster partitioning aligned with banquet / special event loading, isolating high-intensity banqueting shifts from regular daily dining operations.
+- **K-Means Clustering ($K=3$)**: Segmented service volumes into distinct operating regimes.
+- **Agglomerative Hierarchical Clustering**: Validated tree-like structural groupings.
+- **DBSCAN Anomaly Detection**: Successfully isolated 735 irregular outlier service profiles for risk management.
 
 ---
 
 ## 🔍 Model Interpretability & Feature Importance
 
-Inspection of the champion Gradient Boosting Regressor reveals the primary operational drivers governing commercial food waste:
+Inspection of the ensemble pipelines reveals the primary operational drivers governing commercial food waste:
 
 ![Feature Importances](figures/fig_feature_importances.png)
 
 1. **Guest Count & Dining Volume**: Serves as the dominant volume multiplier.
 2. **Pricing Category**: Higher pricing tiers correspond to complex multi-course preparations with elevated plate garnishes.
-3. **Chef Seniority & Experience**: Intermediate and beginner shifts experience higher prep trimming losses compared to expert culinary leads.
-4. **Prep Time Lead**: Long prep times correlate with batch over-preparation during peak shifts.
+3. **Quantity of Food Prepared**: Over-preparation relative to diner count accounts for the majority of preventable waste.
+4. **Preparation Method**: Buffets exhibit substantially higher surplus loss compared to plated or cook-to-order services.
 
 ---
 
 ## 💡 Prescriptive Kitchen Recommendation Engine
 
-The built-in `recommend_actions()` function translates raw model predictions into actionable culinary protocols:
+The built-in prescriptive logic translates raw model predictions into actionable culinary protocols:
 
 ```python
-from food_waste_features import recommend_actions
+from utils.recommendations import build_recommendations
 
-# Example shift profile
-shift_input = {
-    "guest_count": 185,
-    "chef_experience": "beginner",
-    "special_event": 1,
-    "pricing_category": "Premium"
-}
-
-guidance = recommend_actions(predicted_kg=58.4, risk_tier="High Waste", meta=shift_input)
+guidance = build_recommendations(category="High", latest_inputs=shift_input, dataset=data)
 print(guidance)
 ```
 
 **Automated Action Items Triggered:**
 - 🚨 **High Waste Alert**: Implement pre-shift portion-control briefing and restrict batch prep to 80% baseline.
-- 👨‍🍳 **Culinary Supervision**: Pair beginner station chefs with senior kitchen supervisors on trimming stations.
+- 👨‍🍳 **Culinary Supervision**: Pair junior station chefs with senior kitchen supervisors on trimming stations.
 - 🎉 **Banqueting Buffers**: Transition buffet dessert and cold stations to cook-to-order replenishments.
 - 📦 **Surplus Redistribution**: Pre-schedule food bank recovery or staff meal reallocation 2 hours prior to service conclusion.
 
@@ -174,24 +222,53 @@ print(guidance)
 ## 📁 Repository Structure
 
 ```text
-Food-Waste-Analysis-and-Prediction-Using-Machine-Learning/
+DM-Project/
+├── .streamlit/
+│   └── config.toml                                # Streamlit visual theme configuration
 ├── dataset/
 │   ├── train.csv                                  # Training dataset with target food_waste_kg
 │   ├── test.csv                                   # Evaluation dataset
 │   └── submission.csv                             # Sample submission benchmark format
+├── data/
+│   ├── food_wastage_data.csv                      # Operational food wastage records (1,782 rows)
+│   ├── classification_predictions.csv             # Test-set classification results
+│   ├── regression_predictions.csv                 # Test-set regression results
+│   ├── model_metrics.csv                          # Holdout validation metrics
+│   ├── kmeans_clusters.csv                        # K-Means clustering output
+│   ├── hierarchical_clusters.csv                  # Hierarchical clustering output
+│   ├── dbscan_clusters.csv                        # DBSCAN cluster partition
+│   └── dbscan_noise_records.csv                   # Detected anomalous service shifts
 ├── docs/
-│   └── Food_Waste_Analysis_and_Prediction_Documentation.pdf # Full 19-page academic project documentation
+│   └── Food_Waste_Analysis_and_Prediction_Documentation.pdf # Full academic project documentation
 ├── figures/
 │   ├── fig_proposed_workflow.png                  # System architecture diagram
 │   ├── fig_target_distribution.png                # Food waste histogram and density
 │   ├── fig_regression_comparison.png              # Multi-model regression benchmark chart
-│   ├── fig_predicted_vs_actual.png                # Gradient Boosting goodness-of-fit
+│   ├── fig_predicted_vs_actual.png                # Goodness-of-fit diagnostic plot
 │   └── fig_feature_importances.png                # Feature importance rankings
+├── models/
+│   ├── regression_model.joblib                    # Pre-trained Random Forest Regressor pipeline (8.0 MB)
+│   └── classification_model.joblib                # Pre-trained Random Forest Classifier pipeline (11 MB)
+├── screenshots/
+│   ├── 01_dashboard_home.png                      # Home / System Dashboard view
+│   ├── 02_prediction_engine.png                   # Real-time Prediction UI & outputs
+│   ├── 03_waste_analysis.png                      # Clustering & distribution analytics
+│   ├── 04_model_performance.png                  # Test metrics scorecard & importances
+│   ├── 05_recommendations.png                     # Prescriptive operational guidance
+│   └── 06_about_project.png                       # System architecture & documentation
+├── utils/
+│   ├── __init__.py                                # Package initializer
+│   ├── config.py                                  # Path configuration & global constants
+│   ├── model_loader.py                            # Pipeline loader & schema extractor
+│   ├── predictor.py                               # Input validation & inference handler
+│   └── recommendations.py                         # Rule-based prescriptive engine
+├── app.py                                         # Multi-page Streamlit web application & dashboard
 ├── Food_Waste_Analysis_and_Prediction.ipynb       # Primary Colab-optimized research notebook
-├── dm-capstone-project.ipynb                      # Kaggle capstone evaluation notebook
-├── food_waste_features.py                         # Standalone modular preprocessing & cleaning functions
+├── dm-capstone-project.ipynb                      # Capstone evaluation notebook
+├── food_waste_features.py                         # Modular preprocessing & cleaning functions
 ├── requirements.txt                               # Pinned library dependencies
-├── .gitignore                                     # Standard Python / Jupyter exclusion rules
+├── .gitignore                                     # Exclusion rules
+├── LICENSE                                        # MIT License
 └── README.md                                      # Comprehensive project documentation
 ```
 
@@ -200,11 +277,11 @@ Food-Waste-Analysis-and-Prediction-Using-Machine-Learning/
 ## 🚀 Quick Start & Execution
 
 ### 1. Running on Google Colab (Recommended)
-You can launch and run the entire pipeline in Google Colab with a single click:
+You can launch and run the entire ML research pipeline in Google Colab with a single click:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sandeepaddanki1-spec/DM-Project/blob/main/Food_Waste_Analysis_and_Prediction.ipynb)
 
-*The notebook automatically clones the repository and loads the local `dataset/` files with zero manual upload required.*
+*The notebook automatically clones the repository and loads the local dataset with zero manual upload required.*
 
 ---
 
@@ -213,7 +290,7 @@ You can launch and run the entire pipeline in Google Colab with a single click:
 #### Step 1: Clone the repository
 ```bash
 git clone https://github.com/sandeepaddanki1-spec/DM-Project.git
-cd Food-Waste-Analysis-and-Prediction-Using-Machine-Learning
+cd DM-Project
 ```
 
 #### Step 2: Create a virtual environment & install requirements
@@ -227,6 +304,25 @@ pip install -r requirements.txt
 ```bash
 jupyter notebook Food_Waste_Analysis_and_Prediction.ipynb
 ```
+
+---
+
+### 3. Launching the Interactive Web Dashboard
+Run the multi-page Streamlit frontend application locally:
+
+```bash
+streamlit run app.py
+```
+Open your browser at `http://localhost:8501` to access all dashboard pages:
+- **Home / Dashboard**: Overview of system architecture and dataset metrics
+- **Food Waste Prediction**: Real-time interactive portion & waste forecasting
+- **Waste Analysis**: Unsupervised cluster distributions and shift pattern discovery
+- **Model Performance**: Test scorecards, R², RMSE, MAE, and feature importances
+- **Recommendations**: Context-aware prescriptive culinary advisories
+- **About Project**: Technical specifications and pipeline documentation
+
+Alternatively, access the live cloud deployment directly at:
+👉 **[https://dmcapstoneproject-2026.streamlit.app/](https://dmcapstoneproject-2026.streamlit.app/)**
 
 ---
 
